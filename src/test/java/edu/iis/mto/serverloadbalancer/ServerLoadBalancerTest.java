@@ -19,11 +19,7 @@ public class ServerLoadBalancerTest {
 
 		balancing(aServerListWith(theServer), anEmptyListOfVms());
 
-		assertThat(theServer, hasCurrentLoadOf(0.0d));
-	}
-
-	private Matcher<? super Server> hasCurrentLoadOf(double expectedLoadPercentage) {
-		return new CurrentLoadPercentageMatcher(expectedLoadPercentage);
+		assertThat(theServer, CurrentLoadPercentageMatcher.hasCurrentLoadOf(0.0d));
 	}
 
 	private void balancing(Server[] servers, Vm[] vms) {
